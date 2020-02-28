@@ -19,6 +19,33 @@ class UserModel(db.Model):
         self.username = username
         self.password = password
 
+    def add(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def find_all(cls):
+        def to_json(x):
+            return {
+                'username': x.username,
+                'date_join': x.join_date
+            }
+        return {'users': list(map(lambda x: to_json(x), cls.query.all()))}
+
+    @classmethod
+    def find_by_id(cls, id):
+        return cls.query.filter_by(id=id).first()
+
+    @classmethod
+    def delete(cls, id):
+        try:
+            row = db.session.filter_by(id=id).delete()
+            db.session.commit()
+
+            return {'status': 'seccess', 'row_deleted': row}
+        except:
+            return {'status': 'failed to delete data'}
+
 
 class UserSchema(marshmallow.Schema):
     id = fields.Integer()
