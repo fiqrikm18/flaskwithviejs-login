@@ -1,6 +1,5 @@
 from flask import Blueprint, Flask
 from flask_restful import Api
-from config.config import BASE_DIR
 from models.models import db
 import config.config as config
 

@@ -1,9 +1,10 @@
 from app import create_app
 import unittest
 
+
 class UserRequestTest(unittest.TestCase):
     app = create_app().test_client()
-    
+
     def test_hello(self):
         res = self.app.get('/api/hello')
         self.assertEqual(res.status_code, 200)

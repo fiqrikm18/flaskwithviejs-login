@@ -1,6 +1,8 @@
 from marshmallow import Schema, fields, pre_load, validate
 from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
+from libs.utils import json_serial
+
 
 marshmallow = Marshmallow()
 db = SQLAlchemy()
@@ -28,13 +30,15 @@ class UserModel(db.Model):
         def to_json(x):
             return {
                 'username': x.username,
-                'date_join': x.join_date
+                'date_join': json_serial(x.join_date)
             }
         return {'users': list(map(lambda x: to_json(x), cls.query.all()))}
 
     @classmethod
     def find_by_id(cls, id):
         return cls.query.filter_by(id=id).first()
+
+    # TODO: add find by username 
 
     @classmethod
     def delete(cls, id):
