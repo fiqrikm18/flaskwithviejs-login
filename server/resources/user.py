@@ -1,7 +1,7 @@
 from flask_restful import Resource
 from models.models import UserModel, UserSchema, db
 from flask import request
-from libs.utils import decrypt_pass, encrypt_pass
+from libs.utils import Utils
 
 
 users_schema = UserSchema(many=True)
@@ -26,7 +26,7 @@ class UserResource(Resource):
 
         user = UserModel(
             username = json_data['username'],
-            password= encrypt_pass(json_data['password'])
+            password= Utils.encrypt_pass(json_data['password'])
         )
 
         user.add()

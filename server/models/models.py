@@ -1,7 +1,7 @@
 from marshmallow import Schema, fields, pre_load, validate
 from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
-from libs.utils import json_serial
+from libs.utils import Utils
 
 
 marshmallow = Marshmallow()
@@ -30,7 +30,7 @@ class UserModel(db.Model):
         def to_json(x):
             return {
                 'username': x.username,
-                'date_join': json_serial(x.join_date)
+                'date_join': Utils.json_serial(x.join_date)
             }
         return {'users': list(map(lambda x: to_json(x), cls.query.all()))}
 
