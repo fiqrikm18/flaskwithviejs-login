@@ -1,5 +1,6 @@
 from flask_restful import Resource
 from models.models import UserModel, UserSchema, db
+from flask_jwt_extended import create_refresh_token
 from flask import request
 from libs.utils import Utils
 
