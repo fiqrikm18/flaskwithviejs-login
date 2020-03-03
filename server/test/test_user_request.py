@@ -1,5 +1,6 @@
-from app import create_app
 import unittest
+from app import create_app
+from models.models import UserModel
 
 
 class UserRequestTest(unittest.TestCase):
