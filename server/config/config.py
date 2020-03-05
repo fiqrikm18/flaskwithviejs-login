@@ -5,4 +5,4 @@ SQLALCHEMY_ECHO = False
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 # change connection string to your own 
-SQLALCHEMY_DATABASE_URI = 'postgres://flasklogin:flasklogin@localhost/flasklogin'
+SQLALCHEMY_DATABASE_URI = 'mysql://flasklogin:fkm1396@localhost/flasklogin'

@@ -17,6 +17,8 @@ jwt = JWTManager(app)
 
 # app config here
 app.config['JWT_SECRET_KEY'] = 'super_secret'
+# uncomment script bellow if you are running without debug mode
+# app.config['PROPAGATE_EXCEPTIONS'] = True
 
 
 def create_app():
@@ -41,5 +43,5 @@ def create_app():
 
 
 if __name__ == "__main__":
-    app = create_app()
-    app.run(debug=True, port='8000')
+    app = create_app(debug=True)
+    app.run()
