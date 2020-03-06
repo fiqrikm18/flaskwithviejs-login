@@ -1,6 +1,6 @@
 from flask_restful import Resource
 from models.models import UserModel, UserSchema, db
-from flask_jwt_extended import create_refresh_token
+from flask_jwt_extended import jwt_required
 from flask import request
 from libs.utils import Utils
 
@@ -10,6 +10,7 @@ user_schema = UserSchema(exclude=['password'])
 
 
 class UserResource(Resource):
+    @jwt_required
     def get(self, userid=None):
         if userid:
             data = user_schema.dump(UserModel.find_by_id(userid))
@@ -41,5 +42,6 @@ class UserResource(Resource):
 
         return {'result': res}
 
+    @jwt_required
     def delete(self, userid):
         return {'user_id': userid}
