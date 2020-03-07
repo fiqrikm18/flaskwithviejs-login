@@ -1,3 +1,3 @@
 export const config = {
-    'API_BASE_URI': 'https://cryptic-tundra-17377.herokuapp.com/'
+    'API_BASE_URI': 'https://cryptic-tundra-17377.herokuapp.com/api/'
 }
